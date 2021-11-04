@@ -450,9 +450,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Mass: 1
   Gravity: 0
-  PropulsionTime: 4
+  PropulsionTime: 1
   ArbitraryDrag: 0
-  Force: {x: -1, y: 3, z: 1}
+  Force: {x: 0, y: 1, z: -3}
   Acceleration: {x: 0, y: 0, z: 0}
   Velocity: {x: 0, y: 0, z: 0}
   Position: {x: 0, y: 0, z: 0}

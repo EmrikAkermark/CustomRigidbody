@@ -61,7 +61,7 @@ public class MyRigidbody : MonoBehaviour
 		if(timer <= PropulsionTime)
 		{
 			Acceleration = Force / Mass + Vector3.down * Gravity;
-			timer += Time.deltaTime;
+			timer += Time.fixedDeltaTime;
 		}
 		else
 		{
@@ -73,7 +73,7 @@ public class MyRigidbody : MonoBehaviour
 
 		Velocity -= Velocity * Velocity.magnitude * ArbitraryDrag * 0.5f * Time.fixedDeltaTime;
 
-		Position += Velocity * Time.deltaTime;
+		Position += Velocity * Time.fixedDeltaTime;
 
 		transform.position = Position;
 
