@@ -332,7 +332,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   TurnSpeed: 30
-  Speed: 20
+  Speed: 30
+  AOB: 0
+  ATI: 0
+  AUX: 0
+  Tri: 0
   Target: {fileID: 1045071404}
 --- !u!135 &968454056
 SphereCollider:
@@ -405,7 +409,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 968454054}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: -253.6}
+  m_LocalPosition: {x: 0, y: 0, z: -514}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
@@ -446,9 +450,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Mass: 1
   Gravity: 0
-  PropulsionTime: 1
+  PropulsionTime: 4
   ArbitraryDrag: 0
-  Force: {x: -1, y: 3, z: 0}
+  Force: {x: -1, y: 3, z: 1}
   Acceleration: {x: 0, y: 0, z: 0}
   Velocity: {x: 0, y: 0, z: 0}
   Position: {x: 0, y: 0, z: 0}

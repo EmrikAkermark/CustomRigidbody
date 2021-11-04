@@ -8,6 +8,8 @@ public class Chaser : MonoBehaviour
 
 	public float Speed = 30f;
 
+	public float AOB, ATI , AUX, Tri;
+
 	public MyRigidbody Target;
 
 	public void FixedUpdate()
@@ -16,18 +18,30 @@ public class Chaser : MonoBehaviour
 		Vector3 targetPosition = Target.Position;
 		Vector3 targetCourse = Target.Velocity.normalized;
 
-		float AOB = Vector3.Angle(targetPosition - currentPosition, targetCourse);
+		 AOB = Vector3.Angle(targetPosition - currentPosition, targetCourse);
 
-		float ATI = Mathf.Asin((Mathf.Sin(AOB) * Target.Velocity.magnitude) / Speed);
+		 ATI = Mathf.Rad2Deg * Mathf.Asin((Mathf.Sin(AOB * Mathf.Deg2Rad) * Target.Velocity.magnitude) / Speed);
+		
+		if (ATI >= 90f)
+		{
+			Debug.DrawRay(transform.position, transform.forward * 10f, Color.red);
+			transform.position = Vector3.MoveTowards(transform.position, transform.forward * Speed, Time.fixedDeltaTime);
+			Debug.Log("Interception not possible");
+			return;
+		}
 
-		float timeUntilIntersection = Mathf.Abs(Mathf.Sin(AOB) * Vector3.Distance(currentPosition, targetPosition)/ (Mathf.Sin(180 - ATI - AOB) / Speed));
+		AUX = 180 - ATI - AOB;
 
-		Vector3 intersectPosition = targetPosition + Target.Velocity.normalized * timeUntilIntersection;
+		Tri = AOB + AUX + ATI;
+
+		float timeUntilIntersection = Mathf.Abs(Mathf.Sin(AOB * Mathf.Deg2Rad) * Vector3.Distance(currentPosition, targetPosition)/ (AUX * Mathf.Deg2Rad) / Speed);
+
+		Vector3 intersectPosition = targetPosition + Target.Velocity * timeUntilIntersection;
 
 		transform.position = Vector3.MoveTowards(transform.position, intersectPosition, Time.fixedDeltaTime * Speed);
 
 		Debug.DrawLine(currentPosition, intersectPosition);
-		Debug.Log(timeUntilIntersection);
+		//Debug.Log(timeUntilIntersection);
 
 	}
 }
